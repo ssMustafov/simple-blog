@@ -11,10 +11,11 @@ import java.util.Objects;
 public class Post extends BaseModel {
 
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 100, message = "Must contain between 1 and 100 characters")
     private String title;
 
     @NotNull
+    @Size(min = 1, message = "Must contain at least one character")
     private String content;
 
     private Date createdAt;
