@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<body>
+
+<div class="row" layout:fragment="content">
+
+    <h1 class="col-12">Create new post</h1>
+
+    <div class="col-12 mb-2">
+        <div id="editor"></div>
+    </div>
+
+    <div class="col-12 mb-2 d-flex justify-content-end align-items-center">
+        <button type="button" class="btn btn-primary mr-2">Create</button>
+        <button type="button" class="btn btn-secondary">Cancel</button>
+    </div>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+</div>
+
+</body>
+</html>
