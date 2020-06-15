@@ -1,7 +1,7 @@
 package com.example.blog.controllers;
 
 import com.example.blog.models.Post;
-import com.example.blog.services.NotificationService;
+import com.example.blog.web.NotificationService;
 import com.example.blog.services.PostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

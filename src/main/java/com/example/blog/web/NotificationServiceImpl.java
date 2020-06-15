@@ -1,7 +1,5 @@
-package com.example.blog.services;
+package com.example.blog.web;
 
-import com.example.blog.models.NotificationMessage;
-import com.example.blog.models.NotificationType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.annotation.SessionScope;

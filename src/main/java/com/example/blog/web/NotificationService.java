@@ -1,6 +1,6 @@
-package com.example.blog.services;
+package com.example.blog.web;
 
-import com.example.blog.models.NotificationMessage;
+import com.example.blog.web.NotificationMessage;
 
 import java.util.List;
 

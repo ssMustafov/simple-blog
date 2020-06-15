@@ -1,4 +1,4 @@
-package com.example.blog.models;
+package com.example.blog.web;
 
 /**
  * @author smustafov
