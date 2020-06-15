@@ -6,7 +6,7 @@
 
 <div layout:fragment="content">
 
-    <div th:if="${mode == 'create' || mode == 'edit'}">
+    <div th:if="${mode != 'preview'}">
         <form method="post" th:action="@{/post}" th:object="${post}">
             <div class="form-group">
                 <label for="title">Title</label>
