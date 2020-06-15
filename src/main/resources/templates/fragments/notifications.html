@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div class="container" th:fragment="notifications">
+
+    <div class="alert" role="alert"
+         th:each="notification : ${@notificationServiceImpl.messages}"
+         th:text="${notification.message}"
+         th:classappend="${'alert-' + #strings.toLowerCase(notification.type)}">
+        Notification
+    </div>
+
+    <span th:if="${not @notificationServiceImpl.messages.isEmpty()}"
+          th:remove="all"
+          th:text="${@notificationServiceImpl.clearMessages()}"></span>
+
+</div>
+
+</body>
+</html>

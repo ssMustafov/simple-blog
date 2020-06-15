@@ -1,6 +1,7 @@
 package com.example.blog.controllers;
 
 import com.example.blog.models.Post;
+import com.example.blog.services.NotificationService;
 import com.example.blog.services.PostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,9 +28,11 @@ public class PostsController {
     private static final Logger LOGGER = LoggerFactory.getLogger(PostsController.class);
 
     private final PostService postService;
+    private final NotificationService notificationService;
 
-    public PostsController(PostService postService) {
+    public PostsController(PostService postService, NotificationService notificationService) {
         this.postService = postService;
+        this.notificationService = notificationService;
     }
 
     @GetMapping
@@ -58,6 +61,7 @@ public class PostsController {
         Post created = postService.create(post);
         LOGGER.info("Created: {}", created);
 
+        notificationService.addSuccessMessage("Post created successfully");
         redirectAttributes.addAttribute("id", created.getId());
         return "redirect:/post";
     }
