@@ -6,39 +6,47 @@
 
 <div layout:fragment="content">
 
-    <h2>Create new post</h2>
-
-    <form method="post" action="#" th:object="${post}">
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" th:field="*{title}" th:errorclass="is-invalid">
-            <div class="invalid-feedback" th:each="err : ${#fields.errors('title')}" th:text="${err}">
-                Title error
+    <div th:if="${mode == 'create' || mode == 'edit'}">
+        <form method="post" th:action="@{/post}" th:object="${post}">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" th:field="*{title}" th:errorclass="is-invalid">
+                <div class="invalid-feedback" th:each="err : ${#fields.errors('title')}" th:text="${err}">
+                    Title error
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="content">Content</label>
-            <textarea class="form-control" id="content" th:field="*{content}"
-                      th:errorclass="is-invalid"></textarea>
-            <div class="invalid-feedback" th:each="err : ${#fields.errors('content')}" th:text="${err}">
-                Content error
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea class="form-control" id="content" th:field="*{content}"
+                          th:errorclass="is-invalid"></textarea>
+                <div class="invalid-feedback" th:each="err : ${#fields.errors('content')}" th:text="${err}">
+                    Content error
+                </div>
             </div>
-        </div>
 
-        <div class="col-12 mb-2 d-flex justify-content-end align-items-center">
-            <button type="submit" class="btn btn-primary mr-2">Create</button>
-            <button type="button" class="btn btn-secondary">Cancel</button>
-        </div>
-    </form>
+            <div class="col-12 mb-2 d-flex justify-content-end align-items-center">
+                <button type="submit" class="btn btn-primary mr-2">Create</button>
+                <button type="button" class="btn btn-secondary">Cancel</button>
+            </div>
 
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#content'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
+            <script>
+                initEditorInEditMode('#content');
+            </script>
+        </form>
+    </div>
+
+    <div th:if="${mode == 'preview'}">
+
+        <h2 th:text="${post.title}"></h2>
+
+        <div id="editor"></div>
+
+        <script th:inline="javascript">
+            initEditorInPreviewMode('#editor', [[${post.content}]]);
+        </script>
+
+    </div>
 
 </div>
 
