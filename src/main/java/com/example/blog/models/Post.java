@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * @author smustafov
  */
-public class Post extends BaseModel {
+public class Post extends BaseAuditableModel {
 
     @NotNull
     @Size(min = 1, max = 100, message = "Must contain between 1 and 100 characters")
