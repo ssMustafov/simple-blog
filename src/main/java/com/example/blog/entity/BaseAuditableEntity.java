@@ -1,6 +1,8 @@
 package com.example.blog.entity;
 
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -24,6 +26,14 @@ public abstract class BaseAuditableEntity extends BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedOn;
 
+    @CreatedBy
+    @Column(name = "created_by", nullable = false, length = 100)
+    private String createdBy;
+
+    @LastModifiedBy
+    @Column(name = "modified_by", length = 100)
+    private String modifiedBy;
+
     public Date getCreatedOn() {
         return createdOn;
     }
@@ -40,6 +50,22 @@ public abstract class BaseAuditableEntity extends BaseEntity {
         this.modifiedOn = modifiedOn;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,11 +73,13 @@ public abstract class BaseAuditableEntity extends BaseEntity {
         if (!super.equals(o)) return false;
         BaseAuditableEntity that = (BaseAuditableEntity) o;
         return Objects.equals(createdOn, that.createdOn) &&
-                Objects.equals(modifiedOn, that.modifiedOn);
+                Objects.equals(modifiedOn, that.modifiedOn) &&
+                Objects.equals(createdBy, that.createdBy) &&
+                Objects.equals(modifiedBy, that.modifiedBy);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), createdOn, modifiedOn);
+        return Objects.hash(super.hashCode(), createdOn, modifiedOn, createdBy, modifiedBy);
     }
 }
