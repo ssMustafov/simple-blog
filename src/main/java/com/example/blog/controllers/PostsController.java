@@ -1,8 +1,8 @@
 package com.example.blog.controllers;
 
 import com.example.blog.models.Post;
-import com.example.blog.web.NotificationService;
 import com.example.blog.services.PostService;
+import com.example.blog.web.NotificationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -59,10 +59,23 @@ public class PostsController {
         }
 
         Post created = postService.create(post);
-        LOGGER.info("Created: {}", created);
-
         notificationService.addSuccessMessage("Post created successfully");
+
         redirectAttributes.addAttribute("id", created.getId());
+        return "redirect:/post";
+    }
+
+    @PostMapping("/edit")
+    public String updatePost(@Valid Post post, Errors errors, RedirectAttributes redirectAttributes) {
+        if (errors.hasErrors()) {
+            return "post";
+        }
+
+        Post updated = postService.update(post.getId(), post)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        notificationService.addSuccessMessage("Post updated successfully");
+
+        redirectAttributes.addAttribute("id", updated.getId());
         return "redirect:/post";
     }
 

@@ -7,7 +7,9 @@
 <div layout:fragment="content">
 
     <div th:if="${mode != 'preview'}">
-        <form method="post" th:action="@{/post}" th:object="${post}">
+        <form method="post" th:action="${mode} == 'create' ? @{/post} : @{/post/edit}" th:object="${post}">
+            <input type="hidden" th:field="*{id}">
+
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" class="form-control" id="title" th:field="*{title}" th:errorclass="is-invalid">
@@ -38,7 +40,19 @@
 
     <div th:if="${mode == 'preview'}">
 
-        <h2 th:text="${post.title}"></h2>
+        <h2 class="blog-post-title" th:text="${post.title}"></h2>
+
+        <div class="row">
+            <p class="col-md-10 blog-post-meta">
+                <span th:text="${#dates.format(post.createdOn, 'dd MMMM, yyyy')}"></span>
+                by <a href="#" th:text="${post.createdBy}"></a>
+            </p>
+
+            <div class="col-md-2 d-flex justify-content-end align-items-center">
+                <a class="btn btn-primary btn-sm mr-1" th:href="@{/post(id=${post.id},mode='edit')}">Edit</a>
+                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+            </div>
+        </div>
 
         <div id="editor"></div>
 

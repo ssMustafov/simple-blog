@@ -17,6 +17,10 @@ public interface PostMapper {
     PostEntity toEntity(Post post);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdOn", ignore = true)
+    @Mapping(target = "modifiedOn", ignore = true)
+    @Mapping(target = "createdBy", ignore = true)
+    @Mapping(target = "modifiedBy", ignore = true)
     void updateEntity(Post post, @MappingTarget PostEntity postEntity);
 
 }

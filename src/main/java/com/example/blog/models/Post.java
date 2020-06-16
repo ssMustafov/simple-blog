@@ -2,7 +2,6 @@ package com.example.blog.models;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -17,8 +16,6 @@ public class Post extends BaseAuditableModel {
     @NotNull
     @Size(min = 1, message = "Must contain at least one character")
     private String content;
-
-    private Date createdAt;
 
     public String getTitle() {
         return title;
@@ -36,14 +33,6 @@ public class Post extends BaseAuditableModel {
         this.content = content;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,13 +40,12 @@ public class Post extends BaseAuditableModel {
         if (!super.equals(o)) return false;
         Post post = (Post) o;
         return Objects.equals(title, post.title) &&
-                Objects.equals(content, post.content) &&
-                Objects.equals(createdAt, post.createdAt);
+                Objects.equals(content, post.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), title, content, createdAt);
+        return Objects.hash(super.hashCode(), title, content);
     }
 
 }
