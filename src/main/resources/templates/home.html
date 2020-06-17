@@ -7,7 +7,9 @@
 <div class="row" layout:fragment="content">
     <div class="col-md-8 blog-main">
         <div class="blog-post" th:each="post,iterStat : ${posts}">
-            <h2 class="blog-post-title" th:text="${post.title}"></h2>
+            <a href="#" th:href="@{/post(id=${post.id})}">
+                <h2 class="blog-post-title" th:text="${post.title}"></h2>
+            </a>
             <p class="blog-post-meta">
                 <span th:text="${#dates.format(post.createdOn, 'dd MMMM, yyyy')}"></span>
                 by <a href="#" th:text="${post.createdBy}"></a>
