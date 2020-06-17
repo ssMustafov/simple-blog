@@ -4,11 +4,11 @@ import com.example.blog.entity.PostEntity;
 import com.example.blog.models.Post;
 import com.example.blog.repositories.PostRepository;
 import com.example.blog.services.mappers.PostMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * @author smustafov
@@ -25,11 +25,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> findAll() {
-        return postRepository.findAll()
-                .stream()
-                .map(postMapper::fromEntity)
-                .collect(Collectors.toList());
+    public Page<Post> findAll(Pageable pageable) {
+        return postRepository.findAll(pageable).map(postMapper::fromEntity);
     }
 
     @Override
