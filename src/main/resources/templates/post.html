@@ -50,8 +50,10 @@
 
             <div class="col-md-2 d-flex justify-content-end align-items-center">
                 <a class="btn btn-primary btn-sm mr-1" th:href="@{/post(id=${post.id},mode='edit')}">Edit</a>
-                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#postDeleteConfirmation">Delete</a>
             </div>
+
+            <div th:replace="/fragments/modal-panel :: modal-panel('postDeleteConfirmation', 'Delete post', 'Are you sure you wanna delete the post?')"></div>
         </div>
 
         <div id="editor"></div>
