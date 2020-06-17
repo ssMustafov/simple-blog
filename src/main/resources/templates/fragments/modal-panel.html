@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 
-<div th:fragment="modal-panel(id, title, content)">
+<div th:fragment="modal-panel(id, title, content, successUrl)">
 
     <div class="modal fade" th:id="${id}" data-backdrop="static" data-keyboard="false" tabindex="-1"
          role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -17,7 +17,7 @@
                 <div class="modal-body" th:text="${content}"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger">OK</button>
+                    <a class="btn btn-danger" href="#" th:href="${successUrl}">OK</a>
                 </div>
             </div>
         </div>

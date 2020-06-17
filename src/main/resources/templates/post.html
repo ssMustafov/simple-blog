@@ -53,7 +53,8 @@
                 <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#postDeleteConfirmation">Delete</a>
             </div>
 
-            <div th:replace="/fragments/modal-panel :: modal-panel('postDeleteConfirmation', 'Delete post', 'Are you sure you wanna delete the post?')"></div>
+            <div th:replace="/fragments/modal-panel :: modal-panel('postDeleteConfirmation', 'Delete post', 'Are you sure you wanna delete the post?',
+             @{/post/delete(id=${post.id})})"></div>
         </div>
 
         <div id="editor"></div>

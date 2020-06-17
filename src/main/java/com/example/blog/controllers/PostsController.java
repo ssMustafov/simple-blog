@@ -79,4 +79,11 @@ public class PostsController {
         return "redirect:/post";
     }
 
+    @GetMapping("/delete")
+    public String deletePost(@RequestParam Long id) {
+        postService.deleteById(id);
+        notificationService.addSuccessMessage("Post deleted successfully");
+        return "redirect:/";
+    }
+
 }
