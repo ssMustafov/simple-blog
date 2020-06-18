@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 
 <div class="container" th:fragment="header">
@@ -10,9 +11,28 @@
                 <a class="blog-header-logo text-dark" href="/" th:href="@{/}">My Simple Blog</a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
-                <!--                <a class="btn btn-sm btn-outline-secondary" href="#">Login</a>-->
-                <!--                <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>-->
-                <a class="btn btn-sm btn-outline-primary" href="/post" th:href="@{/post}">New post</a>
+                <span sec:authorize="not isAuthenticated()">
+                    <a class="btn btn-sm btn-outline-secondary mr-1" href="#" th:href="@{/login}">Login</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="#" th:href="@{/signup}">Sign up</a>
+                </span>
+                <div class="d-flex justify-content-end align-items-center" sec:authorize="isAuthenticated()">
+                    <a class="btn btn-sm btn-outline-primary mr-1" href="/post" th:href="@{/post}">New post</a>
+
+                    <div class="dropdown">
+                        <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                           data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false"
+                           sec:authentication="name">
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" th:href="@{/logout}">Logout</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>

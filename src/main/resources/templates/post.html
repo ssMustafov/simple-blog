@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 <body>
@@ -48,7 +49,7 @@
                 by <a href="#" th:text="${post.createdBy}"></a>
             </p>
 
-            <div class="col-md-2 d-flex justify-content-end align-items-center">
+            <div class="col-md-2 d-flex justify-content-end align-items-center" sec:authorize="hasRole('ADMIN')">
                 <a class="btn btn-primary btn-sm mr-1" th:href="@{/post(id=${post.id},mode='edit')}">Edit</a>
                 <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#postDeleteConfirmation">Delete</a>
             </div>
