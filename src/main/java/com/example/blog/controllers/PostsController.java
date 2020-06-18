@@ -3,8 +3,6 @@ package com.example.blog.controllers;
 import com.example.blog.models.Post;
 import com.example.blog.services.PostService;
 import com.example.blog.web.NotificationService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,8 +22,6 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/post")
 public class PostsController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(PostsController.class);
 
     private final PostService postService;
     private final NotificationService notificationService;
