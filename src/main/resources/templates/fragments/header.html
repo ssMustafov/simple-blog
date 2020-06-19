@@ -16,7 +16,8 @@
                     <a class="btn btn-sm btn-outline-secondary" href="#" th:href="@{/register}">Sign up</a>
                 </span>
                 <div class="d-flex justify-content-end align-items-center" sec:authorize="isAuthenticated()">
-                    <a class="btn btn-sm btn-outline-primary mr-1" href="/post" th:href="@{/post}">New post</a>
+                    <a class="btn btn-sm btn-outline-primary mr-1" href="/post" th:href="@{/post}"
+                       sec:authorize="hasRole('ADMIN')">New post</a>
 
                     <div class="dropdown">
                         <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
